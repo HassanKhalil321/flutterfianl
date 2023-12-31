@@ -27,7 +27,7 @@ class _loginState extends State<login> {
   checkLogin() async {
     if (loggedIn) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => pageone()));
+          context, MaterialPageRoute(builder: (context) => const  pageone()));
     }
   }
 

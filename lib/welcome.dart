@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:fluter_final_project/login.dart';
-import 'package:fluter_final_project/signup.dart';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
