@@ -3,6 +3,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+void main() {
+  runApp(MaterialApp(
+    home: pagetwo(),
+  ));
+}
+
 class pagetwo extends StatefulWidget {
   const pagetwo({Key? key}) : super(key: key);
 
@@ -11,34 +17,31 @@ class pagetwo extends StatefulWidget {
 }
 
 class _pagetwoState extends State<pagetwo> {
-
-  List<Map<String, dynamic>> _allUsers = []; // Initialize as an empty list
+  List<Map<String, dynamic>> _allUsers = [];
 
   Future<List<Map<String, dynamic>>> getData() async {
     var url = "https://innumerous-sockets.000webhostapp.com/php/f.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = jsonDecode(res.body);
-      return List<Map<String, dynamic>>.from(red); // Return the fetched data
+      return List<Map<String, dynamic>>.from(red);
     }
-    return []; // Return an empty list if data fetching fails
+    return [];
   }
 
   @override
   void initState() {
     super.initState();
     fetchData();
-    _foundUsers = _allUsers;
-    fetchData(); // Call the method to fetch data when the state initializes
   }
 
   void fetchData() async {
-    List<Map<String, dynamic>> data = await getData(); // Fetch data asynchronously
+    List<Map<String, dynamic>> data = await getData();
     setState(() {
-      _allUsers = data; // Update _allUsers with fetched data
+      _allUsers = data;
+      _foundUsers = _allUsers;
     });
   }
-
 
   Future<void> _launchUrl(String _url) async {
     if (!await canLaunch(_url)) {
@@ -50,15 +53,16 @@ class _pagetwoState extends State<pagetwo> {
 
   List<Map<String, dynamic>> _foundUsers = [];
 
-
-
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
-      _foundUsers = _allUsers;
+      results = _allUsers;
     } else {
       results = _allUsers.where((user) {
-        return user["Major"].toString().toLowerCase().contains(enteredKeyword.toLowerCase());
+        return user["Major"]
+            .toString()
+            .toLowerCase()
+            .contains(enteredKeyword.toLowerCase());
       }).toList();
     }
     setState(() {
@@ -66,13 +70,9 @@ class _pagetwoState extends State<pagetwo> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: Colors.purple,
       appBar: AppBar(
         title: const Text('Search Listview'),
       ),
@@ -86,7 +86,9 @@ class _pagetwoState extends State<pagetwo> {
             TextField(
               onChanged: (value) => _runFilter(value),
               decoration: const InputDecoration(
-                  labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                labelText: 'Search',
+                suffixIcon: Icon(Icons.search),
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -102,8 +104,9 @@ class _pagetwoState extends State<pagetwo> {
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     child: GestureDetector(
                       onTap: () {
                         String _url = _foundUsers[index]["website"];
@@ -113,13 +116,13 @@ class _pagetwoState extends State<pagetwo> {
                         children: [
                           Image(
                             image: NetworkImage(
-                                "${_foundUsers[index]["img"]}"),
+                              "${_foundUsers[index]["img"]}",
+                            ),
                             width: 200,
                             height: 100,
                           ),
                           ListTile(
-                            title: Text(
-                                "${_foundUsers[index]["Major"]}"),
+                            title: Text("${_foundUsers[index]["Major"]}"),
                             trailing: Column(
                               children: [
                                 Row(
@@ -137,29 +140,37 @@ class _pagetwoState extends State<pagetwo> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(Icons.school_outlined,
-                                          color: Colors.cyan),
+                                      Icon(
+                                        Icons.school_outlined,
+                                        color: Colors.cyan,
+                                      ),
                                       Text(
-                                          " ${_foundUsers[index]["degree"]}")
+                                        " ${_foundUsers[index]["degree"]}",
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height: 10),
                                   Row(
                                     children: [
                                       Icon(
-                                          Icons.location_on_outlined,
-                                          color: Colors.cyan),
+                                        Icons.location_on_outlined,
+                                        color: Colors.cyan,
+                                      ),
                                       Text(
-                                          "${_foundUsers[index]["location"]}")
+                                        "${_foundUsers[index]["location"]}",
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height: 10),
                                   Row(
                                     children: [
-                                      Icon(Icons.access_time,
-                                          color: Colors.cyan),
+                                      Icon(
+                                        Icons.access_time,
+                                        color: Colors.cyan,
+                                      ),
                                       Text(
-                                          "${_foundUsers[index]["duration"]}")
+                                        "${_foundUsers[index]["duration"]}",
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height: 20),
@@ -186,4 +197,3 @@ class _pagetwoState extends State<pagetwo> {
     );
   }
 }
-

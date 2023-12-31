@@ -30,37 +30,30 @@ class _SignUpState extends State<SignUp> {
     var url = 'https://innumerous-sockets.000webhostapp.com/php/project.php/signup';
 
     Map<String, dynamic> postData = createCredentials();
-    var jsonData = json.encode(postData); // Correct way to encode to JSON
+    var jsonData = json.encode(postData);
 
     try {
       final response = await http.post(
         Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: jsonData,
-      ).timeout(const Duration(seconds: 7)); // Add timeout
+      ).timeout(const Duration(seconds: 7));
 
-      // Handle response
       if (response.statusCode == 200) {
-        // Request was successful, handle the response data
         setState(() {
           result = json.decode(response.body)['message'];
         });
 
 
 
-        // Check the result and handle accordingly in your app
         if (result == 'Email already exists') {
-          // Handle case where email already exists
-          // For example, show a message to the user
         } else if (result == '') {
         Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome(),));
         }
       } else {
-        // Request failed
         print('Request failed with status: ${response.statusCode}');
       }
     } catch (e) {
-      // Handle exceptions if any
       print('Error: $e');
     }
   }

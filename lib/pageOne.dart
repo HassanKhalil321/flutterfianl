@@ -3,6 +3,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+void main() {
+  runApp(MaterialApp(
+    home: pageone(),
+  ));
+}
+
 class pageone extends StatefulWidget {
   const pageone({Key? key}) : super(key: key);
 
@@ -11,8 +17,7 @@ class pageone extends StatefulWidget {
 }
 
 class _pageoneState extends State<pageone> {
-
-  List<Map<String, dynamic>> _allUsers = []; // Initialize as an empty list
+  List<Map<String, dynamic>> _allUsers = [];
 
   Future<List<Map<String, dynamic>>> getData() async {
     var url = "https://innumerous-sockets.000webhostapp.com/php/f.php";
@@ -27,17 +32,17 @@ class _pageoneState extends State<pageone> {
   @override
   void initState() {
     super.initState();
-    _foundUsers = _allUsers;
     fetchData(); // Call the method to fetch data when the state initializes
   }
 
   void fetchData() async {
-    List<Map<String, dynamic>> data = await getData(); // Fetch data asynchronously
+    List<Map<String, dynamic>> data =
+    await getData(); // Fetch data asynchronously
     setState(() {
       _allUsers = data; // Update _allUsers with fetched data
+      _foundUsers = _allUsers; // Initialize _foundUsers with all data
     });
   }
-
 
   Future<void> _launchUrl(String _url) async {
     if (!await canLaunch(_url)) {
@@ -49,15 +54,16 @@ class _pageoneState extends State<pageone> {
 
   List<Map<String, dynamic>> _foundUsers = [];
 
-
-
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
       results = _allUsers;
     } else {
       results = _allUsers.where((user) {
-        return user["Major"].toString().toLowerCase().contains(enteredKeyword.toLowerCase());
+        return user["Major"]
+            .toString()
+            .toLowerCase()
+            .contains(enteredKeyword.toLowerCase());
       }).toList();
     }
     setState(() {
@@ -65,13 +71,9 @@ class _pageoneState extends State<pageone> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: Colors.purple,
       appBar: AppBar(
         title: const Text('Search Listview'),
       ),
@@ -85,7 +87,9 @@ class _pageoneState extends State<pageone> {
             TextField(
               onChanged: (value) => _runFilter(value),
               decoration: const InputDecoration(
-                  labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                labelText: 'Search',
+                suffixIcon: Icon(Icons.search),
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -101,8 +105,9 @@ class _pageoneState extends State<pageone> {
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     child: GestureDetector(
                       onTap: () {
                         String _url = _foundUsers[index]["website"];
@@ -112,13 +117,13 @@ class _pageoneState extends State<pageone> {
                         children: [
                           Image(
                             image: NetworkImage(
-                                "${_foundUsers[index]["img"]}"),
+                              "${_foundUsers[index]["img"]}",
+                            ),
                             width: 200,
                             height: 100,
                           ),
                           ListTile(
-                            title: Text(
-                                "${_foundUsers[index]["Major"]}"),
+                            title: Text("${_foundUsers[index]["Major"]}"),
                             trailing: Column(
                               children: [
                                 Row(
@@ -136,29 +141,37 @@ class _pageoneState extends State<pageone> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(Icons.school_outlined,
-                                          color: Colors.cyan),
+                                      Icon(
+                                        Icons.school_outlined,
+                                        color: Colors.cyan,
+                                      ),
                                       Text(
-                                          " ${_foundUsers[index]["degree"]}")
+                                        " ${_foundUsers[index]["degree"]}",
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height: 10),
                                   Row(
                                     children: [
                                       Icon(
-                                          Icons.location_on_outlined,
-                                          color: Colors.cyan),
+                                        Icons.location_on_outlined,
+                                        color: Colors.cyan,
+                                      ),
                                       Text(
-                                          "${_foundUsers[index]["location"]}")
+                                        "${_foundUsers[index]["location"]}",
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height: 10),
                                   Row(
                                     children: [
-                                      Icon(Icons.access_time,
-                                          color: Colors.cyan),
+                                      Icon(
+                                        Icons.access_time,
+                                        color: Colors.cyan,
+                                      ),
                                       Text(
-                                          "${_foundUsers[index]["duration"]}")
+                                        "${_foundUsers[index]["duration"]}",
+                                      ),
                                     ],
                                   ),
                                   SizedBox(height: 20),

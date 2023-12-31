@@ -18,12 +18,12 @@ class _loginState extends State<login> {
   bool loggedIn = false;
   String email = '';
   String password = '';
-  String result = ''; // Variable to store the response message
+  String result = '';
 
   @override
   void initState() {
     super.initState();
-    checkLogin(); // Check login state when screen loads
+    checkLogin();
   }
 
   checkLogin() async {
@@ -57,7 +57,6 @@ class _loginState extends State<login> {
           )
           .timeout(const Duration(seconds: 7)); // Add timeout
 
-      // Handle response
       if (response.statusCode == 200) {
         setState(() {
           result = json.decode(response.body)['message'];
@@ -78,7 +77,6 @@ class _loginState extends State<login> {
         });
       }
     } catch (e) {
-      // Handle exceptions if any
       print('Error: $e');
     }
   }
