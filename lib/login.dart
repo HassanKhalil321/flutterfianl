@@ -1,6 +1,8 @@
 import 'package:fluter_final_project/signup.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:fluter_final_project/welcome.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'pageone.dart';
@@ -27,8 +29,8 @@ class _loginState extends State<login> {
   checkLogin() async {
     if (loggedIn) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const  pageone()));
-    }
+          context, MaterialPageRoute(builder: (context) => Welcome()));
+     }
   }
 
   loginn() async {
@@ -67,7 +69,7 @@ class _loginState extends State<login> {
             loggedIn = true;
           });
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => pageone()));
+              context, MaterialPageRoute(builder: (context) => Welcome()));
         }
       } else {
         sharedPreferences.setBool('loginstate', false);

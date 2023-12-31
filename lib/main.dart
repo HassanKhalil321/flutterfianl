@@ -1,4 +1,4 @@
-import 'package:fluter_final_project/welcome.dart';
+import 'package:fluter_final_project/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const  MaterialApp(
-home:Welcome(),
+home:login(),
     );
   }
 }

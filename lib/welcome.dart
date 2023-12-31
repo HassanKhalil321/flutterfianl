@@ -1,42 +1,20 @@
 import 'dart:async';
 
 import 'package:fluter_final_project/login.dart';
+import 'package:fluter_final_project/pageOne.dart';
+import 'package:fluter_final_project/pagetwo.dart';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+  const Welcome({Key? key}) : super(key: key);
 
   @override
   State<Welcome> createState() => _WelcomeState();
 }
+
 class _WelcomeState extends State<Welcome> {
-  late Timer time;
-
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-  }
-
-  void startTimer() {
-    time = Timer(  Duration(seconds: 8), navigateToSignUp);
-  }
-
-  void navigateToSignUp() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const login()),
-    );
-  }
-
-  @override
-  void dispose() {
-    time.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +41,77 @@ class _WelcomeState extends State<Welcome> {
           Lottie.network(
             "https://lottie.host/425d7d3a-618a-4bf6-a059-8c078e22ce0b/At0L2hWX8n.json",
           ),
+          SizedBox(
+            height: 40,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.green, Colors.white, Colors.red], // Italy flag colors
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => pageone(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        child: Center(
+                          child: Text(
+                            "Italy",
+                            style: TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 20),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.black, Colors.red, Colors.yellow], // Germany flag colors
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => pagetwo(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        child: Center(
+                          child: Text(
+                            "Germany",
+                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white,),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

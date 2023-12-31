@@ -1,6 +1,8 @@
 import 'package:fluter_final_project/login.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:fluter_final_project/welcome.dart';
+
 import 'package:http/http.dart' as http;
 import 'pageone.dart';
 
@@ -51,7 +53,7 @@ class _SignUpState extends State<SignUp> {
           // Handle case where email already exists
           // For example, show a message to the user
         } else if (result == '') {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => pageone(),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome(),));
         }
       } else {
         // Request failed

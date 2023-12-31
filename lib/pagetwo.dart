@@ -3,14 +3,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class pageone extends StatefulWidget {
-  const pageone({Key? key}) : super(key: key);
+class pagetwo extends StatefulWidget {
+  const pagetwo({Key? key}) : super(key: key);
 
   @override
-  State<pageone> createState() => _pageoneState();
+  State<pagetwo> createState() => _pagetwoState();
 }
 
-class _pageoneState extends State<pageone> {
+class _pagetwoState extends State<pagetwo> {
 
   List<Map<String, dynamic>> _allUsers = []; // Initialize as an empty list
 
@@ -27,6 +27,7 @@ class _pageoneState extends State<pageone> {
   @override
   void initState() {
     super.initState();
+    fetchData();
     _foundUsers = _allUsers;
     fetchData(); // Call the method to fetch data when the state initializes
   }
@@ -54,7 +55,7 @@ class _pageoneState extends State<pageone> {
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
-      results = _allUsers;
+      _foundUsers = _allUsers;
     } else {
       results = _allUsers.where((user) {
         return user["Major"].toString().toLowerCase().contains(enteredKeyword.toLowerCase());
@@ -185,3 +186,4 @@ class _pageoneState extends State<pageone> {
     );
   }
 }
+
