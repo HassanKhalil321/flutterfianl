@@ -73,26 +73,27 @@ class _pagetwoState extends State<pagetwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Search Listview'),
-      ),
+      appBar: AppBar(title: Text('germany')),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: const InputDecoration(
-                labelText: 'Search',
-                suffixIcon: Icon(Icons.search),
+               TextField(
+                onChanged: (value) => _runFilter(value),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                  labelText: 'Search',
+                  suffixIcon: Icon(Icons.search),
+                ),
               ),
-            ),
             const SizedBox(
               height: 20,
             ),
+
             Expanded(
               child: _foundUsers.isNotEmpty
                   ? ListView.builder(
@@ -186,7 +187,7 @@ class _pagetwoState extends State<pagetwo> {
               )
                   : const Center(
                 child: Text(
-                  'No results found',
+                  '',
                   style: TextStyle(fontSize: 24),
                 ),
               ),

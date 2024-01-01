@@ -75,7 +75,7 @@ class _pageoneState extends State<pageone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search Listview'),
+        title: const Text('italy'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -87,6 +87,8 @@ class _pageoneState extends State<pageone> {
             TextField(
               onChanged: (value) => _runFilter(value),
               decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30))),
                 labelText: 'Search',
                 suffixIcon: Icon(Icons.search),
               ),
@@ -187,7 +189,7 @@ class _pageoneState extends State<pageone> {
               )
                   : const Center(
                 child: Text(
-                  'No results found',
+                  '',
                   style: TextStyle(fontSize: 24),
                 ),
               ),
