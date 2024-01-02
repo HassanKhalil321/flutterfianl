@@ -75,7 +75,7 @@ class _pageoneState extends State<pageone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Italy'),centerTitle: true ,
+        title: const Text('Italy'),centerTitle: true ,backgroundColor: Colors.purple,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -99,13 +99,16 @@ class _pageoneState extends State<pageone> {
             Expanded(
               child: _foundUsers.isNotEmpty
                   ? ListView.builder(
+
                 itemCount: _foundUsers.length,
                 itemBuilder: (context, index) => Card(
+
                   key: ValueKey(_foundUsers[index]["Major"]),
-                  color: Colors.blue,
+                  color: Colors.purple,
                   elevation: 4,
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: Container(
+
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),

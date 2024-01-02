@@ -73,7 +73,7 @@ class _pagetwoState extends State<pagetwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Germany'),centerTitle: true,),
+      appBar: AppBar(title: Text('Germany'),centerTitle: true,backgroundColor: Colors.purple),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -100,7 +100,7 @@ class _pagetwoState extends State<pagetwo> {
                 itemCount: _foundUsers.length,
                 itemBuilder: (context, index) => Card(
                   key: ValueKey(_foundUsers[index]["Major"]),
-                  color: Colors.blue,
+                  color: Colors.purple,
                   elevation: 4,
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: Container(
