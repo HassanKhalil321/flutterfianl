@@ -100,6 +100,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       const SizedBox(height: 25),
                       TextFormField(
+                        obscureText: true,
                         decoration: const InputDecoration(
                           labelText: 'Password',
                           hintText: 'Enter your Password',

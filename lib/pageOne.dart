@@ -75,7 +75,7 @@ class _pageoneState extends State<pageone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('italy'),
+        title: const Text('Italy'),centerTitle: true ,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),

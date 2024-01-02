@@ -123,6 +123,7 @@ class _loginState extends State<login> {
                       ),
                       const SizedBox(height: 25),
                       TextFormField(
+                        obscureText: true,
                         decoration: const InputDecoration(
                           labelText: 'Password',
                           hintText: 'Enter your Password',
